@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevHire AI — Job Application Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== LANDING PAGE ===== -->
+  <div id="landing-page">
+    <nav class="nav">
+      <div class="nav-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-name">DevHire <span class="brand-ai">AI</span></span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="nav-login-btn">Log in</button>
+        <button class="btn btn-primary" id="nav-signup-btn">Get started</button>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <div class="hero-eyebrow">
+        <span class="mono-tag">v2.0</span>
+        <span>Track every opportunity. Miss nothing.</span>
+      </div>
+      <h1 class="hero-headline">
+        Your job search,<br /><em>finally organized.</em>
+      </h1>
+      <p class="hero-sub">DevHire AI gives developers a command center for their job hunt — applications, statuses, and follow-ups in one focused dashboard.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" id="hero-signup-btn">Start tracking free</button>
+        <button class="btn btn-outline btn-lg" id="hero-login-btn">I have an account</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill"><span class="stat-num">100%</span><span class="stat-lbl">Free forever</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill"><span class="stat-num">∞</span><span class="stat-lbl">Applications</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill"><span class="stat-num">0</span><span class="stat-lbl">Setup required</span></div>
+      </div>
+    </main>
+
+    <footer class="landing-footer">
+      <div class="footer-left">
+        <span class="brand-icon small">⬡</span>
+        <span>DevHire AI</span>
+      </div>
+      <div class="footer-center">
+        <span>Built by <strong>Kamal Jetwani</strong> · kamaljetwani100@gmail.com</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://digitalheroesco.com" target="_blank" rel="noopener" class="footer-badge">Built for Digital Heroes ↗</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== MODAL: LOGIN ===== -->
+  <div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-label="Log in">
+    <div class="modal">
+      <button class="modal-close" data-close="login-modal" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <span class="brand-icon">⬡</span>
+        <h2>Welcome back</h2>
+        <p>Log in to your DevHire AI account</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+          <span class="field-error" id="login-email-err"></span>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+          <span class="field-error" id="login-pass-err"></span>
+        </div>
+        <span class="field-error global-error" id="login-global-err"></span>
+        <button class="btn btn-primary btn-full" id="login-submit-btn">Log in</button>
+        <p class="modal-switch">No account? <button class="link-btn" id="switch-to-signup">Create one →</button></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: SIGNUP ===== -->
+  <div class="modal-overlay" id="signup-modal" role="dialog" aria-modal="true" aria-label="Sign up">
+    <div class="modal">
+      <button class="modal-close" data-close="signup-modal" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <span class="brand-icon">⬡</span>
+        <h2>Create account</h2>
+        <p>Start tracking your applications today</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="signup-name">Full name</label>
+          <input type="text" id="signup-name" placeholder="Kamal Jetwani" autocomplete="name" />
+          <span class="field-error" id="signup-name-err"></span>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" />
+          <span class="field-error" id="signup-email-err"></span>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Min. 6 characters" autocomplete="new-password" />
+          <span class="field-error" id="signup-pass-err"></span>
+        </div>
+        <span class="field-error global-error" id="signup-global-err"></span>
+        <button class="btn btn-primary btn-full" id="signup-submit-btn">Create account</button>
+        <p class="modal-switch">Already have an account? <button class="link-btn" id="switch-to-login">Log in →</button></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: ADD / EDIT JOB ===== -->
+  <div class="modal-overlay" id="job-modal" role="dialog" aria-modal="true" aria-label="Add Job Application">
+    <div class="modal modal-wide">
+      <button class="modal-close" data-close="job-modal" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <h2 id="job-modal-title">Add Application</h2>
+        <p>Fill in the details for this opportunity</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="job-company">Company <span class="required">*</span></label>
+            <input type="text" id="job-company" placeholder="e.g. Stripe" />
+            <span class="field-error" id="job-company-err"></span>
+          </div>
+          <div class="form-group">
+            <label for="job-role">Role <span class="required">*</span></label>
+            <input type="text" id="job-role" placeholder="e.g. Senior Frontend Engineer" />
+            <span class="field-error" id="job-role-err"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="job-status">Status</label>
+            <select id="job-status">
+              <option value="Applied">Applied</option>
+              <option value="Screening">Screening</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Withdrawn">Withdrawn</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="job-date">Date Applied</label>
+            <input type="date" id="job-date" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="job-salary">Salary Range</label>
+            <input type="text" id="job-salary" placeholder="e.g. ₹18–25 LPA" />
+          </div>
+          <div class="form-group">
+            <label for="job-location">Location</label>
+            <input type="text" id="job-location" placeholder="e.g. Remote / Bangalore" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="job-url">Job URL</label>
+          <input type="url" id="job-url" placeholder="https://..." />
+        </div>
+        <div class="form-group">
+          <label for="job-notes">Notes</label>
+          <textarea id="job-notes" rows="3" placeholder="Recruiter contact, tech stack, anything to remember..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" data-close="job-modal">Cancel</button>
+          <button class="btn btn-primary" id="job-submit-btn">Save Application</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <div id="dashboard-page" class="hidden">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⬡</span>
+        <span class="brand-name">DevHire <span class="brand-ai">AI</span></span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link active" data-view="dashboard">
+          <span class="sidebar-icon">▦</span> Dashboard
+        </a>
+        <a href="#" class="sidebar-link" data-view="applications">
+          <span class="sidebar-icon">◈</span> Applications
+        </a>
+      </nav>
+      <div class="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">KJ</div>
+        <div class="user-info">
+          <span class="user-name" id="sidebar-name">Kamal Jetwani</span>
+          <span class="user-email" id="sidebar-email">kamaljetwani100@gmail.com</span>
+        </div>
+        <button class="logout-btn" id="logout-btn" title="Log out">⏻</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="dash-main">
+      <header class="dash-header">
+        <div class="dash-header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+          <div>
+            <h1 class="dash-title" id="dash-view-title">Dashboard</h1>
+            <p class="dash-subtitle" id="dash-view-sub">Your job hunt at a glance</p>
+          </div>
+        </div>
+        <div class="dash-header-right">
+          <div class="search-box" id="search-box-wrapper">
+            <span class="search-icon">⌕</span>
+            <input type="text" id="search-input" placeholder="Search company, role..." />
+          </div>
+          <button class="btn btn-primary" id="add-job-btn">+ Add Application</button>
+        </div>
+      </header>
+
+      <!-- Stats Section -->
+      <section class="stats-grid" id="stats-section">
+        <div class="stat-card">
+          <div class="stat-card-label">Total Applied</div>
+          <div class="stat-card-num" id="stat-total">0</div>
+          <div class="stat-card-trend" id="stat-total-trend"></div>
+        </div>
+        <div class="stat-card accent-green">
+          <div class="stat-card-label">Interviews</div>
+          <div class="stat-card-num" id="stat-interview">0</div>
+          <div class="stat-card-sub">active rounds</div>
+        </div>
+        <div class="stat-card accent-blue">
+          <div class="stat-card-label">Offers</div>
+          <div class="stat-card-num" id="stat-offer">0</div>
+          <div class="stat-card-sub">received</div>
+        </div>
+        <div class="stat-card accent-red">
+          <div class="stat-card-label">Rejections</div>
+          <div class="stat-card-num" id="stat-rejected">0</div>
+          <div class="stat-card-sub">this cycle</div>
+        </div>
+        <div class="stat-card accent-purple">
+          <div class="stat-card-label">Response Rate</div>
+          <div class="stat-card-num" id="stat-rate">0%</div>
+          <div class="stat-card-sub">of applications</div>
+        </div>
+        <div class="stat-card accent-yellow">
+          <div class="stat-card-label">This Week</div>
+          <div class="stat-card-num" id="stat-week">0</div>
+          <div class="stat-card-sub">applied recently</div>
+        </div>
+      </section>
+
+      <!-- Status Pipeline -->
+      <section class="pipeline-section" id="pipeline-section">
+        <h2 class="section-title">Status Pipeline</h2>
+        <div class="pipeline" id="pipeline-track">
+          <!-- JS populated -->
+        </div>
+      </section>
+
+      <!-- Applications Table -->
+      <section class="table-section" id="table-section">
+        <div class="table-header">
+          <h2 class="section-title">Applications</h2>
+          <div class="table-filters">
+            <select id="filter-status">
+              <option value="">All Statuses</option>
+              <option value="Applied">Applied</option>
+              <option value="Screening">Screening</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Withdrawn">Withdrawn</option>
+            </select>
+            <select id="filter-sort">
+              <option value="date-desc">Newest first</option>
+              <option value="date-asc">Oldest first</option>
+              <option value="company">Company A–Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="app-table" id="app-table">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Salary</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="app-table-body">
+              <!-- JS populated -->
+            </tbody>
+          </table>
+          <div class="empty-state hidden" id="empty-state">
+            <div class="empty-icon">◈</div>
+            <h3>No applications yet</h3>
+            <p>Add your first job application to get started.</p>
+            <button class="btn btn-primary" id="empty-add-btn">+ Add Application</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dash-footer">
+        <span>Kamal Jetwani · kamaljetwani100@gmail.com</span>
+        <a href="https://digitalheroesco.com" target="_blank" rel="noopener" class="footer-badge">Built for Digital Heroes ↗</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
