@@ -6,7 +6,7 @@
 'use strict';
 
 /* ========== CONSTANTS ========== */
-const API_BASE = 'https://devhire-ai-job-tracker-1.onrender.com/api';
+const API_BASE = 'https://devhire-ai-job-tracker.onrender.com/api';
 const STORAGE_TOKEN = 'devhire_token';
 const STORAGE_USER  = 'devhire_user';
 
